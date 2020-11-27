@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/color/css/userhome.css" rel="stylesheet" />
+
+    
+
+    <style>
+        .profile{
+            display: none;
+        }
+    </style>
+    <title>Public Home</title>
+</head>
+<body >
+
+<!-- Content Area Start-->
+    <!-- Header or Banner Area Start-->
+     <div class="hg">
+            <div class="banner-content">
+                <h1>Meddit</h1>
+                <p>Where doctors and patients communicate</p>
+                <p align="right">Welcome,<%= name %>.(Logged in as <%= user_type %>) </p>
+            </div>
+        </div>
+    <section class="header-area">
+        <div class="menu-container">
+            <nav class="navbar">
+                
+                <div class="navbar-menulist" id="navbarMenuList">
+                    <ul class="navbar-list">
+                        <li class="nav-item">
+                            <a class="nav-link hover-ani" href='/user/thread'>Create Thread</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link hover-ani" href='/logout'>Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-ani" href='/user/profile'>Profile Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-ani" href='/user/aboutus'>About Us</a>
+                        </li>
+                        
+                            
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+    
+
+        
+        <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Phone Number</td>
+            <td>Address</td>
+            <td>Blood Group</td>
+            <td>User Type</td>
+            <td>Email</td>
+        </tr>
+        <tr>
+            <td><%= name %></td>
+            <td><%= phone_number %></td>
+            <td><%= address %></td>
+            <td><%= blood_group %></td>
+            <td><%= user_type %></td>
+            <td><%= email %></td>
+        </tr>
+
+    
+    
+
+        </table>
+
+
+    
+    
+    
+
+    <section class="footer-menu" id="footermenu" >
+        <p align="center">&copy; Copyright 2020 Meddit.com </p>
+    </section>
+
+</body>
+</html>
