@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/inv/css/mystyle.css" rel="stylesheet" >
+    <title>Insert Book</title>
+</head>
+
+<body>
+
+	<div>
+		  <header>
+			<h1>OnlineBookStore</h1>
+			<a href="">View User</a>	
+			<hr>
+		 </header>
+	</div>
+    
+                <form method="POST" action="/admin/insertBook">
+                    <div>
+                      <label>Book Name</label>
+                      <input type="text"  name="bookName">
+                    </div>
+                      <label>Book Type</label>
+                        <div>
+                          <select id="bookType" name="bookType">
+                            <option  value="Select Book-Type" disabled>Select Your Blood Group</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Crime Fiction">Crime Fiction</option>
+                        </select>
+                        </div>
+					  <div>
+                        <label>Author</label>
+                        <input type="text"  name="author">
+                      </div>
+                      <div>
+                        <label>Price</label>
+                        <input type="number"  name="price">
+                      </div>
+                  </form>
+             
+    <div class="footer">
+  <p>&copy; Copyright 2020 OnlineBookStore.com </p>
+</div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js_validation/login_validation.js"></script>
+  <link href="/inv/css/registration.css" rel="stylesheet" />
+  <title>Registration</title>
+</head>
+
+<body>
+  <section class="parent">
+  	<div></div>
+  	<div class="main">
+    <p class="sign" align="center">Register</p>
+    <form class="form1" name="form_login" action="/registration"  method="post">
+      <input class="un " type="text" align="center" id="name" name="name" placeholder="Name">
+      <select id="userType" name="userType">
+                            <option  value="Select User-Type" disabled>User Type</option>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+      </select>
+      <input class="un " type="text" align="center" id="address" name="address" placeholder="Address">
+      <input class="un " type="text" align="center" id="email" name="email" placeholder="Email">
+      <input class="pass" type="password" align="center" id="password" name="password" placeholder="Password" >
+      <input  class="submit" type="submit" align="center" name="submit" value="Log in">
+      
+       </form>     
+        <a href="/login">Log in</a>
+    </div>
+  </section>
+     
+</body>
+
+</html>
+
