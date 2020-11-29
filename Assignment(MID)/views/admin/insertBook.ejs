@@ -9,16 +9,23 @@
 
 	<div>
 		  <header>
-			<h1>OnlineBookStore</h1>
-			<a href="">View User</a>	
-			<hr>
+			    <h1>OnlineBookStore</h1>
+                <p>Easy solution for buying books</p>
+                <p align="right">Welcome,<%= name %>.(Logged in as <%= user_type %>) </p>
+                <a href="/admin">Home</a>
+                <a href="/admin/viewUsers">View Users</a>
+                <a href="/logout">Logout</a>
 		 </header>
-	</div>
+
+
+	</div>	
+   
+ 	<hr>
     
                 <form method="POST" action="/admin/insertBook">
                     <div>
                       <label>Book Name</label>
-                      <input type="text"  name="bookName">
+                      <input type="text"  name="name">
                     </div>
                       <label>Book Type</label>
                         <div>
@@ -37,8 +44,12 @@
                       <div>
                         <label>Price</label>
                         <input type="number"  name="price">
+                        <hr>
+                        <input type="submit"  name="submit" value="Insert Book">
                       </div>
                   </form>
+                  <hr>
+                  <p>After succesful Book Insertion,home page will be redirected*</p>
              
     <div class="footer">
   <p>&copy; Copyright 2020 OnlineBookStore.com </p>

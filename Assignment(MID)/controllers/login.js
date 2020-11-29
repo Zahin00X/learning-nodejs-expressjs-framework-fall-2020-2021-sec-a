@@ -7,29 +7,32 @@ const userModel = require.main.require('./models/userModel');
 router.get('/', (req, res)=>{
 	res.render('login');	
 });
+
 router.post('/', (req, res)=>{
 	
 	var user = {
-		email: req.body.email,
-		password: req.body.password
+		email: req.body.loginEmail,
+		password: req.body.loginPassword
 
 	};
+	
 	userModel.validate(user, function(status){
 		if(status == true){
 			req.session.email = user.email;	
-			 userModel.getByEmail(user.email, function(result){
-			 	req.session.id = result[0].user_id;
-				req.session.name = result[0].name;	
-			 	req.session.user_type = result[0].user_type;
-			 	req.session.phone_number = result[0].phone_number;
-			 	req.session.address = result[0].address;
-			 	req.session.blood_group = result[0].blood_group;
-			 	res.cookie('blood_grp', req.session.blood_group);
+			 userModel.getByEmail( user.email , function(result){
+			 	console.log(result);
+			 	req.session.id = result[0].userId;
+				req.session.name = result[0].userName;	
+			 	req.session.user_type = result[0].userType;
+			 	req.session.address = result[0].userAddress;
+			 	req.session.email = result[0].userEmail;
+	
+			 	res.cookie('Name', req.session.name);
 
-				if(result[0].user_type =="admin"){
+				if(result[0].userType =="admin"){
 			 		res.redirect('/admin');
 			 	}
-			 	else if(result[0].user_type=="user" || result[0].user_type=="doctor" || result[0].user_type=="patient" ){
+			 	else if(result[0].userType =="user" ){
 					res.redirect('/user');
 			 	}
 			 }	);

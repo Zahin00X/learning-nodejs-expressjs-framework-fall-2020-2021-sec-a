@@ -42,7 +42,7 @@ router.post('/', [
 			userType: req.body.userType,
 			address: req.body.address,
 			email: req.body.email,
-			password:req.body.password ///crypto.createHash('md5').update(req.body.password).digest('hex')
+			password:req.body.password 
 		
         };
 

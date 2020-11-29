@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/inv/css/mystyle.css" rel="stylesheet" >
+    <title>Insert Book</title>
+</head>
+
+<body>
+
+	<div>
+		  <header>
+			    <h1>OnlineBookStore</h1>
+                <p>Easy solution for buying books</p>
+                <p align="right">Welcome,<%= name %>.(Logged in as <%= user_type %>) </p>
+                <a href="/admin">Home</a>
+                <a href="/logout">Logout</a>
+		 </header>
+
+
+	</div>	
+   
+ 	<hr>
+     
+<table border="2"  width="100%" align="center">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>User Type</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Password</th>     
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center" >
+                        <% users.forEach(function(user) { %>
+                            <tr>
+                                <td><%= user.userId %></td>
+                                <td><%= user.userName %></td>
+                                <td><%= user.userType %></td>            
+                                <td><%= user.userAddress %></td>
+                                <td><%= user.userEmail %></td>
+                                <td><%= user.userPassword%></td>
+      
+
+                                <td>
+                                    <a href="/admin/updateUsers/<%= user.userId %>" >Update</a>
+                                 <a href="/admin/deleteUser/<%= user.userId %>" >Remove</a>
+                                   
+                                </td>
+                            </tr>
+                        <% }) %>
+                </table>
+
+                <h2>Please Refresh page after an Update!</h2>
+             
+    <div class="footer">
+  <p>&copy; Copyright 2020 OnlineBookStore.com </p>
+</div>
+  </body>
+</html>

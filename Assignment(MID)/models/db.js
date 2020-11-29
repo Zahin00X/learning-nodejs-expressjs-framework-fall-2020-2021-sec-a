@@ -3,7 +3,7 @@ const mysql = require('mysql');
 var getConnection = function(callback){
 	var connection = mysql.createConnection({
 		  host     : 'localhost',
-		  database : 'meddit',
+		  database : 'online book store',
 		  user     : 'root',
 		  password : ''
 		});
@@ -27,6 +27,7 @@ module.exports = {
 		getConnection(function(connection){
 			connection.query(sql , function (error, results) {
 				callback(results);
+				console.log(results);
 			});
 			
 			connection.end(function(err) {

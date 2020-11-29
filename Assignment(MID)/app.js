@@ -30,10 +30,10 @@ app.use('/registration', registration);
 
 //router
 app.get('/', (req, res)=>{
-	res.send('Welcome to online book store!please go to /login (port is 3005)');
+	res.redirect('/login');
 });
 
 //server startup
 app.listen(port, (error)=>{
-	console.log('server strated at '+port);
+	console.log('server started at '+port);
 });

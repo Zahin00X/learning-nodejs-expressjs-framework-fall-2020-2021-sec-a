@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/inv/css/mystyle.css" rel="stylesheet" >
+    <title>Insert Book</title>
+</head>
+
+<body>
+
+	<div>
+		  <header>
+			    <h1>OnlineBookStore</h1>
+                <p>Easy solution for buying books</p>
+                <p align="right">Welcome,<%= name %>.(Logged in as <%= user_type %>) </p>
+                <a href="/admin/viewUsers">View Users</a>
+                <a href="/admin">Home</a>
+                <a href="/logout">Logout</a>
+		 </header>
+
+
+	</div>	
+   
+ 	<hr>
+
+    <form method="POST" >
+    <fieldset>
+      <legend>Update User</legend>
+      <table>
+        <tr>
+          <td>Username</td>
+          <td><input type="text" name="name" value="<%=name%>"></td>
+                </tr>
+                <tr>
+          <td>User Type</td>
+          <td><input type="text" name="user_type" value="<%=user_type%>"></td>
+                </tr>
+        <tr>
+          <td>Address</td>
+          <td><input type="text" name="address" value="<%=address%>"></td>
+                </tr>
+                <tr>
+          <td>Email</td>
+          <td><input type="email" name="email" value="<%=email%>"></td>
+                </tr>
+                
+          <td></td>
+          <td><input type="submit" name="submit" value="Update"></td>
+                </tr>
+      </table>
+    </fieldset>
+  </form>
+       
+    <div class="footer">
+  <p>&copy; Copyright 2020 OnlineBookStore.com </p>
+</div>
+  </body>
+</html>

@@ -2,98 +2,45 @@ const express 	= require('express');
 const router 	= express.Router();
 const {body, validationResult} 		= require('express-validator');
 const userModel		= require.main.require('./models/userModel');
+const bookModel		= require.main.require('./models/bookModel');
 
 router.get('/', (req, res) => {
 	if (req.session.email != null) {
-		userModel.getByEmail(req.session.email, function (result) {
-			res.render('admin/index', {
-				user: result
-			});
-		})
-	} else {
-		res.redirect('/login');
-	}
-}); 
-////Add USer
-router.get('/register', (req, res) => {
-			res.render('admin/register');
-		});
-	
-router.get('/adduser', (req, res) => {
-	if (req.session.email != null) {
-		userModel.getByEmail(req.session.email, function (result) {
-			res.render('admin/adduser', {
-				user: result
-			});
-		})
-	} else {
-		res.redirect('/login');
-	}
-}); 
-router.post('/adduser', [
-
-    body('name')
-    .notEmpty()
-    .withMessage('Username is required'),
-    
-    body('phone_number')
-    .notEmpty()
-	.withMessage('Phone number is required'),
-	
-	body('address')
-    .notEmpty()
-	.withMessage('Address is required'),
-	
-	body('blood_group')
-    .notEmpty()
-	.withMessage('Blood Group is mendatory'),
-
-	body('user_type')
-    .notEmpty()
-    .withMessage('User type is required'),
-	
-    body('email')
-    .isEmail()
-    .withMessage('Email is required'),
-
-	body('password')
-    .notEmpty()
-    .withMessage('Password is required')
-
-  ], (req, res) => {
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.send(errors.array());
-    }else{
-        user={
-            name: req.body.name,
-			phone_number: req.body.phone_number,
-			address: req.body.address,
-			blood_group: req.body.blood_group,
-			user_type: req.body.user_type,
-			email: req.body.email,
-			password:req.body.password ///crypto.createHash('md5').update(req.body.password).digest('hex')
 		
-        };
+		res.render('admin/home', {name: req.session.name , id: req.session.id , user_type: req.session.user_type , address: req.session.address , email : req.session.email });
 
-        userModel.insert(user,(status)=>{
-			console.log(user);
-            if(status){
-				console.log('Insertion Succesful');
-				res.redirect('/admin/userlist');                              
-            }else{
-                res.send("Insertion Failed!");                
-            } 
-        });
-    }
-  });
-  //////////Users list/////////////////
-  router.get('/userlist', (req, res) => {
+	} else {
+		res.redirect('/login');
+	}
+});
+
+router.get('/insertBook', (req, res) => {
+	if (req.session.email != null) {
+		
+		res.render('admin/insertBook', {name: req.session.name , id: req.session.id , user_type: req.session.user_type , address: req.session.address , email : req.session.email });
+
+	} else {
+		res.redirect('/login');
+	}
+});
+
+router.get('/aboutUs', (req, res) => {
+	if (req.session.email != null) {
+		
+		res.render('admin/aboutUs', {name: req.session.name , id: req.session.id , user_type: req.session.user_type , address: req.session.address , email : req.session.email });
+
+	} else {
+		res.redirect('/login');
+	}
+});
+
+
+
+router.get('/viewUsers', (req, res) => {
 	if (req.session.email != null) {
 		userModel.getAllUser(function (result) {
-			res.render('admin/userlist', {
-				users: result
+			res.render('admin/viewUsers', {
+				users: result , name: req.session.name , user_type: req.session.user_type
 			});
 		})
 	} else {
@@ -101,52 +48,10 @@ router.post('/adduser', [
 	}
 });
 
-////Update
-router.get('/updateuser/:user_id', (req, res)=>{
-
-	userModel.getById(req.params.user_id, (result) => {
-		var user = {
-			name: result[0].name,
-			phone_number:result[0].phone_number,
-			address: result[0].address,
-			blood_group:result[0].blood_group,
-			user_type:result[0].user_type,
-			email:result[0].email
-		};
-		res.render('admin/updateuser', user);
-	});
-});
-
-router.post('/updateuser/:user_id', (req, res)=>{
-	var user = {
-		user_id: req.params.user_id,
-		name: req.body.name,
-		phone_number:req.body.phone_number,
-		address: req.body.address,
-		blood_group:req.body.blood_group,
-		user_type:req.body.user_type,
-		email:req.body.email
-	}
-	
-//PDFFFFF---------
-
-	
-	
-
-	//////----------
-	userModel.update(user, (result) => {
-		console.log(result);
-	});
-	res.redirect('/admin/userlist');
-	
-
-});
-
-////Deletion
-router.get('/delete/:user_id', (req, res)=>{
+router.get('/deleteUser/:user_id', (req, res)=>{
 	userModel.delete(req.params.user_id,(status)=>{
 		if(status){
-			res.redirect('/admin/userlist');
+			res.redirect('/admin/viewUsers');
 			
 		}else{
 			res.send('Deletion failed');
@@ -154,78 +59,55 @@ router.get('/delete/:user_id', (req, res)=>{
   });
 });
 
+router.get('/updateUsers/:user_id', (req, res)=>{
 
+	userModel.getById(req.params.user_id, (result) => {
+		var user = {
+			name: result[0].userName,
+			user_type:result[0].userType,
+			address: result[0].userAddress,
+			email:result[0].userEmail
+		};
+		res.render('admin/updateUsers', user);
+	});
+});
 
-///////Post Notice
-router.get('/addnotice', (req,res) => {
-	if (req.session.email != null) {
-		userModel.getByEmail(req.session.email, function (result) {
-			res.render('admin/addnotice', {
-				notice: result
-			});
-		})
-	} else {
-		res.redirect('/login');
+router.post('/updateUsers/:user_id', (req, res)=>{
+	var user = {
+		user_id: req.params.user_id,
+		name: req.body.name,
+		user_type:req.body.user_type,
+		address: req.body.address,
+		email:req.body.email
 	}
 	
-}); 
-router.post('/addnotice', [
-    body('notice')
-    .notEmpty()
-    .withMessage('Text is required for notice')
-  ], (req, res) => {
-       var notice={
-            notice: req.body.notice
-			
-        };
 
-        userModel.insertnotice(notice,(status)=>{
-            if(status){
-				console.log('Notice Posted Succesfully');
-				res.redirect('/admin/noticelist');                              
-            }else{
-                res.send("Notice Posting Failed!");                
-            } 
-        });
+	userModel.update(user, (result) => {
+		console.log(result);
 	});
-/////All Notices
-	router.get('/noticelist', (req, res) => {
-		if (req.session.email != null) {
-			userModel.getAllNotice(function (result) {
-				res.render('admin/noticelist', {
-					notices: result
-				});
-			})
-		} else {
-			res.redirect('/login');
-		}
-	});
+	res.redirect('/admin/viewUsers');
+	
 
-	router.get('/deleteN/:nid', (req, res)=>{
-		userModel.deleteNotice(req.params.nid,(status)=>{
-			if(status){
-				res.redirect('/admin/noticelist');
-				
-			}else{
-				res.send('Deletion failed');
-			}
-	  });
+});
+
+router.post('/insertBook', (req, res)=>{
+	var book = {
+		name: req.body.name,
+		book_type:req.body.bookType,
+		author: req.body.author,
+		price:req.body.price
+	}
+	
+
+	bookModel.insert(book, (result) => {
+		console.log(result);
 	});
+	res.redirect('/admin');
+	
+
+});
 
 
-	//////////Search
-	router.post('/search',(req,res)=>{
-		var n = {
-			search : req.body.search,
-			searchby: req.body.searchby
-		};
-		userModel.searchNotice(n, function(results){
-			if(results){
-				res.json({n:results});
-			}else{
-				res.json({n:'error'});
-			}
-		});
-	});
+
 		
 module.exports = router;

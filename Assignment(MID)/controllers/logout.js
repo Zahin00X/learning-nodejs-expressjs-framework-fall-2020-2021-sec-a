@@ -5,7 +5,7 @@ router.get('/', (req, res)=>{
 
     req.session.destroy();
     res.redirect('/login');
-    res.cookie['blood_grp'] = "";
+    res.cookie['Name'] = "";
     
 });
 module.exports = router;

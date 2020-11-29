@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/inv/css/mystyle.css" rel="stylesheet" >
+    <title>Insert Book</title>
+</head>
+
+<body>
+
+	<div>
+		  <header>
+			    <h1>OnlineBookStore</h1>
+                <p>Easy solution for buying books</p>
+                <p align="right">Welcome,<%= name %>.(Logged in as <%= user_type %>) </p>
+                <a href="/user/purchaseBook">Purchase Book</a>
+                <a href="/logout">Logout</a>
+		 </header>
+
+
+	</div>	
+   
+ 	<hr>
+
+  <form method="POST" >
+    <fieldset>
+      <legend>Update User</legend>
+      <table>
+         <tr>
+
+               <td>Quantity</td>
+               <td><input type="number" name="qty"></td>
+               <td><input type="submit" name="submit" value="Buy"></td>
+         </tr>
+      </table>
+    </fieldset>
+  </form>
+
+             
+    <div class="footer">
+  <p>&copy; Copyright 2020 OnlineBookStore.com </p>
+</div>
+  </body>
+</html>
