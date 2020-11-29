@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 06:18 PM
+-- Generation Time: Nov 29, 2020 at 07:49 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -36,6 +36,15 @@ CREATE TABLE `book` (
   `bookPrice` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`bookId`, `bookName`, `bookType`, `bookAuthor`, `bookPrice`) VALUES
+(1, 'hhh', 'Sci-Fi', 'ASASASAS', 100),
+(2, 'Harry Potter', 'Adventure', 'J.K Rowling', 750),
+(3, 'hobbit', 'Adventure', 'test', 100);
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +74,14 @@ CREATE TABLE `user` (
   `userEmail` varchar(50) NOT NULL,
   `userPassword` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userId`, `userName`, `userType`, `userAddress`, `userEmail`, `userPassword`) VALUES
+(1, 'Zahin', 'user', 'dhanmondi', 'zahin0013@gmail.com', '12345'),
+(2, 'admin', 'admin', 'Gazipur', 'admin@gmail.com', '12345');
 
 --
 -- Indexes for dumped tables
@@ -98,7 +115,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `bookId` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `bookId` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transaction`
@@ -110,7 +127,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
